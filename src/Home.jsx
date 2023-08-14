@@ -1,6 +1,24 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import React from "react";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 const Home = () => {
+  const startListening = () => {
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: "en-IN",
+    });
+  };
+  const { transcript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return null;
+  }
+
   return (
     <section className="main-section">
       <section>
@@ -12,13 +30,13 @@ const Home = () => {
           </p>
         </div>
         <div className="voice-area">
-          <div>
-            <textarea name="textarea" rows="10" cols="70"></textarea>
-          </div>
+          <div>{transcript}</div>
           <div className="buttons">
             <button>Copy to clipboard</button>
-            <button>Start listening</button>
-            <button>Stop listening</button>
+            <button onClick={startListening}>Start listening</button>
+            <button onClick={SpeechRecognition.stopListening}>
+              Stop listening
+            </button>
           </div>
         </div>
       </section>

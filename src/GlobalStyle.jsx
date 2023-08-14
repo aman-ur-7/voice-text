@@ -57,6 +57,10 @@ export const GlobalStyle = createGlobalStyle`
                     border-radius: 12px;
                     gap: 10px;
 
+                    &>:nth-child(1){
+                        height: 250px;
+                        width: 100%;
+                    }
                     textarea{
                         outline: none;
                         border: none;
