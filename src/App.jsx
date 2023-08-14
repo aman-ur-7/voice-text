@@ -10,13 +10,6 @@ const App = () => {
   }, []);
 
   return <>{loading == false ? <Home /> : <RenderPage />}</>;
-  return (
-    <>
-      <RenderPage />
-    </>
-  );
-
-  return <Home />;
 };
 
 export default App;
